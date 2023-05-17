@@ -121,10 +121,10 @@ class UnityPlayerUtils {
         fun quitPlayer() {
             try {
                 if (unityPlayer != null) {
-                    unityPlayer!!.quit()
+//                    unityPlayer!!.quit()
                     unityLoaded = false
                 }
-            } catch (e: Error) {
+            } catch (e: Exception) {
                 e.message?.let { Log.e(LOG_TAG, it) }
             }
         }
