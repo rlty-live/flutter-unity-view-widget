@@ -16,8 +16,11 @@ Future<void> main() async {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUpAll(() {
-    SystemChannels.platform_views.setMockMethodCallHandler(
-        fakePlatformViewsController.fakePlatformViewsMethodHandler);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      channel,
+      fakePlatformViewsController.fakePlatformViewsMethodHandler,
+    );
   });
 
   setUp(() {
@@ -25,7 +28,11 @@ Future<void> main() async {
   });
 
   tearDown(() {
-    channel.setMockMethodCallHandler(null);
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(
+      channel,
+      null,
+    );
   });
 
   testWidgets('Unity widget ready', (WidgetTester tester) async {
